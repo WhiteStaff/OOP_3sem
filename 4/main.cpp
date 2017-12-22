@@ -5,6 +5,7 @@
 #include <thread>
 #include <mutex>
 
+
 using namespace std;
 
 int main()
@@ -41,8 +42,29 @@ int main()
 		}
 	}
 	fin.close();
-	fout.close;
+	fout.close();
 	});
-	
+	string line;
+	cout << "Input exit, pause or resume" << endl;
+	while (line != "exit")
+	{
+		cin >> line;
+		if (line == "pause")
+		{
+			pause = true;
+		}
+		else
+		if (line == "resume")
+		{
+			pause = false;
+			con.notify_one();
+		}
+		else
+		if (line == "exit")
+		{
+			good = true;
+		}
+
+	}
 	t.join();
 }
